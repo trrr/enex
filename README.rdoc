@@ -1,14 +1,1 @@
-== Basic rails scaffold
-
-
-* Rails 4.0.2
-
-* Devise 
-
-* Foundation
-
-* Haml
-
-* Rspec
-
-* Postgresql for production
+== Work in progress
