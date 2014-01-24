@@ -17,6 +17,7 @@ describe Exercise do
   describe "making relations" do
     let(:exercise) {build :exercise}
     let(:text) {build :text}
+    let(:word) {build :word, exercise: exercise}
 
     before do
       exercise.texts << text
@@ -24,6 +25,11 @@ describe Exercise do
 
     it "returns exercise texts" do
       expect(exercise.texts).to eq [text]
+    end
+
+    it "return exercise words" do
+      word.save!
+      expect(exercise.words).to eq [word]
     end
   end
 end
