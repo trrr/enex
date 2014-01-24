@@ -1,4 +1,4 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'rubygems'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -35,6 +35,11 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 
+
+  # Include url helpers
+
+  config.include Rails.application.routes.url_helpers
+
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
@@ -43,4 +48,7 @@ RSpec.configure do |config|
 
   # Capybara DSL
   config.include Capybara::DSL
+
+  # Factory girl
+  config.include FactoryGirl::Syntax::Methods
 end
