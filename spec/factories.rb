@@ -18,4 +18,10 @@ FactoryGirl.define do
     body "an"
     exercise
   end
+
+  factory :progress do
+    position 1
+    exercise_id 1
+    user
+  end
 end
