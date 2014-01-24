@@ -21,14 +21,20 @@ describe Exercise do
 
     before do
       exercise.texts << text
+      exercise.save!
     end
 
     it "returns exercise texts" do
       expect(exercise.texts).to eq [text]
     end
 
+    it "doesn't save relation twice" do
+      expect{
+        exercise.texts << text
+        }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
     it "return exercise words" do
-      exercise.save!
       word.save!
       expect(exercise.words).to eq [word]
     end

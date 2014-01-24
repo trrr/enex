@@ -1,4 +1,5 @@
 class Text < ActiveRecord::Base
-  has_and_belongs_to_many :exercises
+  has_many :exercises, through: :exercise_texts
+  has_many :exercise_texts
   validates :body, presence: true
 end
