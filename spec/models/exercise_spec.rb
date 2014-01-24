@@ -28,6 +28,7 @@ describe Exercise do
     end
 
     it "return exercise words" do
+      exercise.save!
       word.save!
       expect(exercise.words).to eq [word]
     end
