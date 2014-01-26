@@ -3,7 +3,8 @@ class Text < ActiveRecord::Base
   has_many :exercise_texts
   validates :body, presence: true
 
-  def search(word)
+  def includes?(word)
+    #TODO: rewrite that crap
     self.body.downcase.include? word.body.downcase
   end
 end

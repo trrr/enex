@@ -6,12 +6,13 @@ FactoryGirl.define do
   end
 
   factory :text do
-    body "An example of the text"
+    sequence(:body) {|n| "An example of the text number #{n} #{('a'..'z').to_a.shuffle[0,8].join}" }
   end
 
   factory :exercise do
     name "Articles"
     description "Articles description"
+    title "Title"
   end
 
   factory :word do

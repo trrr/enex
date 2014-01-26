@@ -20,8 +20,9 @@ describe Exercise do
     let(:word) {build :word, exercise: exercise}
 
     before do
-      exercise.texts << text
       exercise.save!
+      word.save!
+      exercise.texts << text
     end
 
     it "returns exercise texts" do
@@ -35,7 +36,6 @@ describe Exercise do
     end
 
     it "return exercise words" do
-      word.save!
       expect(exercise.words).to eq [word]
     end
   end
