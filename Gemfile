@@ -10,9 +10,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'pg'
 
 group :production do
-  gem 'pg'
   gem 'uglifier', '>= 1.3.0'
 end
 
