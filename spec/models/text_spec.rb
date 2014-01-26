@@ -25,10 +25,15 @@ describe Text do
 
   end
 
-  describe "#search" do
+  describe "#includes?" do
 
-    it "searchs for a word in the body" do
-      expect(text.search(word)).to be_true
+    it "returns true if the body includes given word" do
+      expect(text.includes?(word)).to be_true
+    end
+
+    it "returns true if the body includes given word (through postgres search)" do
+      pending "Write postgres search"
+      # expect(Text.search(word.body)).to eq word.body
     end
 
     it "tests edge cases" do 

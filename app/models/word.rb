@@ -5,9 +5,16 @@ class Word < ActiveRecord::Base
 
     def texts
       Text.where("id NOT IN (?)", self.exercise.texts.map(&:id))
+      # .search(self.body)
     end
 
   private 
+
+    # def make_relations
+    #   texts.each do |t|
+    #     self.exercise.texts << t
+    #   end
+    # end
 
     # Create relation Excersice << Text if Text includes this word. 
     # Now we can do exercise.texts and get all texts with exersice words.

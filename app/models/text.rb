@@ -7,4 +7,13 @@ class Text < ActiveRecord::Base
     #TODO: rewrite that crap
     self.body.downcase.include? word.body.downcase
   end
+
+
+  # It works but have to figure out what to do with "stop words"
+  def self.search(word)
+    conditions = <<-EOS
+      to_tsvector('english', body) @@ to_tsquery('english', ?)
+    EOS
+    where(conditions, word)
+  end
 end

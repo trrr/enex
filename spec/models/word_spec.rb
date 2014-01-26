@@ -51,17 +51,17 @@ describe Word do
       expect(exercise.texts).to eq [text, text1]
     end
 
-    it "works fast enough" do
-      100.times do 
-        create :text
-      end
+    # it "works fast enough" do
+    #   100.times do 
+    #     create :text
+    #   end
 
-      exercise1 = build :exercise
-      exercise1.save!
-      word3 = build :word, exercise: exercise1 , body: "the"
-      word3.save!
-      expect(exercise1.texts).to eq Text.all
-    end
+    #   exercise1 = build :exercise
+    #   exercise1.save!
+    #   word3 = build :word, exercise: exercise1 , body: "the"
+    #   word3.save!
+    #   expect(exercise1.texts).to eq Text.all
+    # end
 
   end
 end
