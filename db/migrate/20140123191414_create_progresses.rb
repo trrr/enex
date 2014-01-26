@@ -1,9 +1,9 @@
 class CreateProgresses < ActiveRecord::Migration
   def change
     create_table :progresses do |t|
-      t.string :user_id
-      t.string :exercise_id
-      t.string :position
+      t.integer :user_id
+      t.integer :exercise_id
+      t.integer :position
 
       t.timestamps
     end

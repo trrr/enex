@@ -1,8 +1,8 @@
 class CreateExerciseTexts < ActiveRecord::Migration
   def change
     create_table :exercise_texts do |t|
-      t.string :exercise_id
-      t.string :text_id
+      t.integer :exercise_id
+      t.integer :text_id
 
 
       t.timestamps
