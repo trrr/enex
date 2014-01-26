@@ -7,10 +7,6 @@ class Word < ActiveRecord::Base
       Text.where("id NOT IN (?)", self.exercise.texts.map(&:id))
     end
 
-    def ps
-      self.exercise
-    end
-
   private 
 
     # Create relation Excersice << Text if Text includes this word. 
@@ -19,8 +15,10 @@ class Word < ActiveRecord::Base
       #TODO: refactor that crap
       if texts != []
         search_through_texts_and_make_relation(texts)
-      else
+      elsif texts == [] && self.exercise.texts == []
         search_through_texts_and_make_relation(Text.all)
+      else
+        return
       end
     end
 
