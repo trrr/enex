@@ -13,15 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140124125739) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "exercise_texts", force: true do |t|
-    t.string   "exercise_id"
-    t.string   "text_id"
+    t.integer  "exercise_id"
+    t.integer  "text_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "exercise_texts", ["exercise_id"], name: "index_exercise_texts_on_exercise_id"
-  add_index "exercise_texts", ["text_id"], name: "index_exercise_texts_on_text_id"
+  add_index "exercise_texts", ["exercise_id"], name: "index_exercise_texts_on_exercise_id", using: :btree
+  add_index "exercise_texts", ["text_id"], name: "index_exercise_texts_on_text_id", using: :btree
 
   create_table "exercises", force: true do |t|
     t.string   "title"
@@ -32,9 +35,9 @@ ActiveRecord::Schema.define(version: 20140124125739) do
   end
 
   create_table "progresses", force: true do |t|
-    t.string   "user_id"
-    t.string   "exercise_id"
-    t.string   "position"
+    t.integer  "user_id"
+    t.integer  "exercise_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,8 +63,8 @@ ActiveRecord::Schema.define(version: 20140124125739) do
     t.string   "last_sign_in_ip"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "words", force: true do |t|
     t.integer  "exercise_id"
