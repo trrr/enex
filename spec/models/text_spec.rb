@@ -27,7 +27,7 @@ describe Text do
 
   describe "Postgres full text search" do
 
-    it "searchs text table" do
+    it "searches text table" do
       expect(Text.search(word.body)).to eq [Text.find(text.id)]
     end
 
