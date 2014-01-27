@@ -9,9 +9,9 @@ describe Text do
     expect(build :text, body: "").not_to be_valid
   end
 
-  let(:exercise) {build :exercise}
-  let(:text) {build :text}
-  let(:word) {build :word, exercise: exercise}
+  let(:exercise) {create :exercise}
+  let(:text) {create :text, body: "Something different"}
+  let(:word) {create :word, exercise: exercise, body: "something"}
 
   describe "making relations" do
 
@@ -25,15 +25,10 @@ describe Text do
 
   end
 
-  describe "#includes?" do
+  describe "Postgres full text search" do
 
-    it "returns true if the body includes given word" do
-      expect(text.includes?(word)).to be_true
-    end
-
-    it "returns true if the body includes given word (through postgres search)" do
-      pending "Write postgres search"
-      # expect(Text.search(word.body)).to eq word.body
+    it "searchs text table" do
+      expect(Text.search(word.body)).to eq [Text.find(text.id)]
     end
 
     it "tests edge cases" do 

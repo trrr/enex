@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+#NOTE: This spec doesn't make much sense now as we use postgres search with indexes.
+#Left for future tests
+
 describe "Save new word" do
   let(:exercise) {build :exercise}
   let(:word) {build :word, exercise: exercise , body: "the"}
@@ -8,7 +11,7 @@ describe "Save new word" do
   before do 
     exercise.save!
 
-    1000.times do 
+    10.times do 
       create :text
     end
 
@@ -20,12 +23,10 @@ describe "Save new word" do
   end
 
   it "filters text by existing relations" do
-    1000.times do 
+    10.times do 
       create :text
     end
     word1.save!
     expect(exercise.texts).to eq Text.all
   end
 end
-
-# 2000 = 21.7
