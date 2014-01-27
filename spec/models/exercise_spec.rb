@@ -15,13 +15,11 @@ describe Exercise do
   end
 
   describe "making relations" do
-    let(:exercise) {build :exercise}
-    let(:text) {build :text}
-    let(:word) {build :word, exercise: exercise}
+    let(:exercise) {create :exercise}
+    let(:text) {create :text}
+    let(:word) {create :word, exercise: exercise}
 
     before do
-      exercise.save!
-      word.save!
       exercise.texts << text
     end
 
@@ -35,7 +33,7 @@ describe Exercise do
         }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
-    it "return exercise words" do
+    it "returns exercise words" do
       expect(exercise.words).to eq [word]
     end
   end
