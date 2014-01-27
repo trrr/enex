@@ -12,7 +12,7 @@ class Text < ActiveRecord::Base
   # It works but have to figure out what to do with "stop words"
   def self.search(word)
     conditions = <<-EOS
-      to_tsvector('english', body) @@ to_tsquery('english', ?)
+      to_tsvector('simple', body) @@ to_tsquery('simple', ?)
     EOS
     where(conditions, word)
   end
