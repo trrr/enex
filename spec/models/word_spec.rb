@@ -2,17 +2,11 @@ require 'spec_helper'
 
 describe Word do
 
-  let(:exercise) {build :exercise}
-  let(:text) {build :text}
-  let(:word) {build :word, exercise: exercise}
-  let(:word1) {build :word, exercise: exercise, body: "ant"}
-  let(:text1) {build :text, body: "the ant"}
-
-  before do
-    exercise.save!
-    text.save!
-    word.save!
-  end
+  let(:exercise) {create :exercise}
+  let(:text) {create :text}
+  let(:word) {create :word, exercise: exercise}
+  let(:text1) {create :text, body: "the antler"}
+  let(:word1) {create :word, exercise: exercise, body: "ant"}
 
   describe "validations" do
     it "is valid with valid data" do
@@ -39,29 +33,16 @@ describe Word do
 
   describe "creating connections" do
 
-    it { pending "Needs refactoring. Baadly."}
+    before { exercise.reload; text.reload; word.reload }
 
     it "creates connection on word added" do
       expect(exercise.texts).to eq [text]
     end
 
-    it "doesn't search through already connected texts" do
-      text1.save!
-      word1.save!
-      expect(exercise.texts).to eq [text, text1]
+    it "doesn't create connection if text doesn't contain a given word" do
+      text1.reload; word1.reload
+      expect(exercise.texts).to eq [text]
     end
-
-    # it "works fast enough" do
-    #   100.times do 
-    #     create :text
-    #   end
-
-    #   exercise1 = build :exercise
-    #   exercise1.save!
-    #   word3 = build :word, exercise: exercise1 , body: "the"
-    #   word3.save!
-    #   expect(exercise1.texts).to eq Text.all
-    # end
 
   end
 end
