@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Text do
   it "is valid with valid data" do
-    expect(build :text).to be_valid
+    expect(create :text).to be_valid
   end
 
   it "validates presence of name" do

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Exercise do
 
   it "is valid with valid data" do
-    expect(build :exercise).to be_valid
+    expect(create :exercise).to be_valid
   end
 
   it "validates presence of name" do
