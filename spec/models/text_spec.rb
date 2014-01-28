@@ -30,7 +30,7 @@ describe Text do
     before { text.reload }
 
     it "searches text table" do
-      expect(Text.search(word.body)).to eq [Text.find(text.id)]
+      expect(Text.search(word.body)).to eq [text]
     end
 
     it "doens't return true if only part of the word is given" do
@@ -38,7 +38,7 @@ describe Text do
     end
 
     it "is case insensitive" do
-      expect(Text.search(word.body.upcase)).to eq [Text.find(text.id)]
+      expect(Text.search(word.body.upcase)).to eq [text]
     end
     
   end
