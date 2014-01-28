@@ -27,13 +27,20 @@ describe Text do
 
   describe "Postgres full text search" do
 
+    before { text.reload }
+
     it "searches text table" do
       expect(Text.search(word.body)).to eq [Text.find(text.id)]
     end
 
-    it "tests edge cases" do 
-      pending "Make edge cases tests"
+    it "doens't return true if only part of the word is given" do
+      expect(Text.search("somethin")).to eq []
     end
+
+    it "is case insensitive" do
+      expect(Text.search(word.body.upcase)).to eq [Text.find(text.id)]
+    end
+    
   end
 
 end
