@@ -4,19 +4,25 @@ class Word < ActiveRecord::Base
   before_save :make_relations
 
 
+
   private 
 
     # Exclude any existing relations from the search,
     # if no relations exists make full table search.
+    # TODO: Needs refactoring!
     def texts    
-      if self.exercise.texts.count > 0
-        Text.where("id NOT IN (?)", self.exercise.texts.map(&:id)).search(self.body)
+      if exercise_texts.any?
+        Text.where("id NOT IN (?)", exercise_texts.map(&:id)).search(self.body)
       else
         Text.search(self.body)
       end
     end
 
     def make_relations
-      texts.each  { |t| self.exercise.texts << t }
+      texts.each  { |t| exercise_texts << t }
+    end
+
+    def exercise_texts
+      self.exercise.texts
     end
 end
