@@ -40,7 +40,7 @@ describe Word do
     end
 
     it "doesn't create connection if text doesn't contain a given word" do
-      text1.reload; word1.reload
+      word1.reload
       expect(exercise.texts).to eq [text]
     end
 
