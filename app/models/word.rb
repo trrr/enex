@@ -7,22 +7,21 @@ class Word < ActiveRecord::Base
 
   private 
 
-    # Exclude any existing relations from the search,
-    # if no relations exists make full table search.
-    # TODO: Needs refactoring!
-    def texts    
-      if exercise_texts.any?
-        Text.where("id NOT IN (?)", exercise_texts.map(&:id)).search(self.body)
-      else
-        Text.search(self.body)
-      end
-    end
-
     def make_relations
-      texts.each  { |t| exercise_texts << t }
+      new_texts.each  { |t| exercise_texts << t }
     end
 
     def exercise_texts
       self.exercise.texts
     end
+
+    def new_texts    
+      new_texts = Text.where.not(id: exercise_texts.map(&:id)) ||  Text.all
+      search_in_texts(new_texts)
+    end
+
+    def search_in_texts(array_of_texts)
+      array_of_texts.search(self.body)
+    end
+
 end
